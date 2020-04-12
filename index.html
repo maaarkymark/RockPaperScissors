@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <script>
+        // Your JavaScript goes here!
+
+        // Computer picks
+        function computerPlay() {
+            let number = Math.floor(Math.random() * Math.floor(3));
+            let selection;
+            if (number == 0) {
+                selection = "Rock";
+            } else if (number == 1) {
+                selection = "Paper";
+            } else {
+                selection = "Scissors";
+            }
+            return selection;
+        }
+
+        // Player picks
+        function playerPlay() {
+            let selection;
+            let question = prompt("Rock, Paper, Scissors?").toLocaleLowerCase();
+            switch (question) {
+                case "rock":
+                    selection = "Rock";
+                    break;
+                case "paper":
+                    selection = "Paper";
+                    break;
+                case "scissors":
+                    selection = "Scissors";
+                    break;
+                default:
+                    selection = "Please choose Rock, Paper or Scissors.";
+            }
+            return selection;
+        }
+
+        // One round
+        function playRound(playerSelection, computerSelection) {
+
+            playerSelection = playerPlay();
+            computerSelection = computerPlay();
+
+            alert("You chose: " + playerSelection + " and Computer chose: " + computerSelection);
+            if (playerSelection == computerSelection) {
+                return "The round is a draw!";
+            } else if (playerSelection == "Rock" && computerSelection == "Paper") {
+                cpuScore++;
+                return "Sorry, Computer won this round! =(";
+            } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
+                playerScore++;
+                return "Woohoo! you won this round! =)";
+            } else if (playerSelection == "Paper" && computerSelection == "Rock") {
+                playerScore++;
+                return "Woohoo! you won this round! =)";
+            } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
+                cpuScore++;
+                return "Sorry, Computer won this round! =(";
+            } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
+                cpuScore++;
+                return "Sorry, Computer won this round! =(";
+            } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
+                playerScore++;
+                return "Woohoo! you won this round! =)";
+            }
+        }
+
+        // Whole game
+        function game() {
+            while (playerScore < 3 && cpuScore < 3) {
+                alert(playRound());
+                console.log("Player: " + playerScore);
+                console.log("CPU: " + cpuScore);
+                if (playerScore == 3) {
+                    return alert("Woohoo! you won the game! =)");
+                } else if (cpuScore == 3) {
+                    alert("Boo! you lost the game! =(");
+                }
+            }
+        }
+
+        // To keep track of scores
+        let cpuScore = 0;
+        let playerScore = 0;
+        game();
+    </script>
+</body>
+
+</html>
