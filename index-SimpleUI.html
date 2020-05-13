@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <!-- Rock, Paper & Scissors buttons -->
+    <div id="container">
+        <button id="rock_btn">Rock</button>
+        <button id="paper_btn">Paper</button>
+        <button id="scissors_btn">Scissors</button>
+    </div>
+
+    <script>
+        const container = document.querySelector('#container');
+        container.style.textAlign = 'center';
+        container.style.marginTop = '25%';
+
+
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(element => {
+            element.style.fontSize = '24px';
+            element.style.borderRadius = '12px';
+            element.style.color = 'black';
+        });
+
+        const rock_btn = document.querySelector('#rock_btn');
+        rock_btn.addEventListener('click', playRock);
+
+        const paper_btn = document.querySelector('#paper_btn');
+        paper_btn.addEventListener('click', playPaper);
+
+        const scissors_btn = document.querySelector('#scissors_btn');
+        scissors_btn.addEventListener('click', playScissors);
+
+        // Computer picks
+        function computerPlay() {
+            let number = Math.floor(Math.random() * Math.floor(3));
+            let selection;
+            if (number == 0) {
+                selection = 'Rock';
+            } else if (number == 1) {
+                selection = 'Paper';
+            } else {
+                selection = 'Scissors';
+            }
+            return selection;
+        }
+
+        // Player picks Rock
+        function playRock() {
+            playerSelection = 'Rock';
+            computerSelection = computerPlay();
+
+            alert('You chose: ' + playerSelection + ' and Computer chose: ' + computerSelection);
+            if (playerSelection == computerSelection) {
+                alert('The round is a draw!');
+            } else if (computerSelection == 'Paper') {
+                alert('Sorry, Computer won this round! =(');
+                cpuScore++;
+            } else if (computerSelection == 'Scissors') {
+                alert('Woohoo! you won this round! =)');
+                playerScore++;
+            }
+            game();
+        }
+
+        // Player picks Paper
+        function playPaper() {
+            playerSelection = 'Paper';
+            computerSelection = computerPlay();
+
+            alert('You chose: ' + playerSelection + ' and Computer chose: ' + computerSelection);
+            if (playerSelection == computerSelection) {
+                alert('The round is a draw!');
+            } else if (computerSelection == 'Rock') {
+                alert('Woohoo! you won this round! =)');
+                playerScore++;
+            } else if (computerSelection == 'Scissors') {
+                alert('Sorry, Computer won this round! =(');
+                cpuScore++;
+            }
+            game();
+        }
+
+        // Player picks Scissors
+        function playScissors() {
+            playerSelection = 'Scissors';
+            computerSelection = computerPlay();
+
+            alert('You chose: ' + playerSelection + ' and Computer chose: ' + computerSelection);
+            if (playerSelection == computerSelection) {
+                alert('The round is a draw!');
+            } else if (computerSelection == 'Rock') {
+                alert('Sorry, Computer won this round! =(');
+                cpuScore++;
+            } else if (computerSelection == 'Paper') {
+                alert('Woohoo! you won this round! =)');
+                playerScore++;
+            }
+            game();
+        }
+
+        // Whole game
+        function game() {
+            alert("Player: " + playerScore + '\n' +
+                "CPU: " + cpuScore);
+            if (playerScore == 3) {
+                alert("Woohoo! you won the game! =)");
+                cpuScore = 0;
+                playerScore = 0;
+            } else if (cpuScore == 3) {
+                alert("Boo! you lost the game! =(");
+                cpuScore = 0;
+                playerScore = 0;
+            }
+        }
+
+        // To keep track of scores
+        let cpuScore = 0;
+        let playerScore = 0;
+    </script>
+</body>
+
+</html>
